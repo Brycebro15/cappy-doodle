@@ -260,6 +260,18 @@ function loop() {
 
   requestAnimationFrame(loop);
 }
+// Mobile touch support
+window.addEventListener("touchstart", function () {
+  if (!gameStarted) {
+    // Default to doodle for mobile if character not selected
+    selectedCharacter = doodle;
+    resetGame();
+  } else if (gameOver) {
+    resetGame();
+  } else {
+    bird.velocity = bird.jumpForce;
+  }
+});
 
 // Listen for keyboard input
 window.addEventListener("keydown", function (e) {
